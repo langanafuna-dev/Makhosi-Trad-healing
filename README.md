@@ -1,4 +1,4 @@
-# Makosi Traditional Healing
+# Makosi Traditional Healing — deployed on Vercel
 
 A single Next.js repository for the Makosi Traditional Healing franchise
 site — the two-branch landing page, the **Journey Home Healing** branch,
