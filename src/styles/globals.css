@@ -1,0 +1,351 @@
+/* Makosi Traditional Healing — brand tokens
+   Pulled from the Journey Home Healing logo: deep forest green,
+   terracotta, warm ivory, gold. Reused everywhere so the storefront,
+   dashboard and auth pages read as one system. */
+
+:root {
+  --mk-ivory: #faf6ec;
+  --mk-ivory-soft: #f4f1e4;
+  --mk-cream-card: #fffdf7;
+  --mk-forest: #26372a;
+  --mk-forest-soft: #3e5541;
+  --mk-terracotta: #7a3e20;
+  --mk-gold: #c9a15e;
+  --mk-text: #4a5a4d;
+  --mk-text-muted: #8a9a8d;
+  --mk-border: #e3d7b6;
+  --mk-danger: #b23a2e;
+
+  --mk-font-serif: "Playfair Display", Georgia, serif;
+  --mk-font-sans: "Work Sans", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--mk-ivory);
+  color: var(--mk-forest);
+  font-family: var(--mk-font-sans);
+}
+
+h1, h2, h3, h4, .mk-serif {
+  font-family: var(--mk-font-serif);
+  margin: 0;
+}
+
+a {
+  color: var(--mk-terracotta);
+  text-decoration: none;
+}
+a:hover {
+  color: #5c2e17;
+}
+
+button {
+  font-family: var(--mk-font-sans);
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--mk-gold);
+  color: var(--mk-forest);
+}
+
+.mk-input {
+  border: 1px solid var(--mk-border);
+  border-radius: 5px;
+  padding: 12px 14px;
+  font-size: 14.5px;
+  font-family: var(--mk-font-sans);
+  width: 100%;
+  background: var(--mk-cream-card);
+}
+
+.mk-button {
+  background: var(--mk-terracotta);
+  color: var(--mk-ivory);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 14.5px;
+  font-weight: 600;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  display: inline-block;
+}
+.mk-button.secondary {
+  background: var(--mk-forest-soft);
+}
+.mk-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(122, 62, 32, 0.28);
+}
+.mk-button.secondary:hover:not(:disabled) {
+  box-shadow: 0 10px 24px rgba(38, 55, 42, 0.28);
+}
+.mk-button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.mk-card {
+  background: var(--mk-cream-card);
+  border: 1px solid #e9e2cc;
+  border-radius: 6px;
+  padding: 22px 20px;
+}
+
+/* Opt-in — only for cards that are themselves a clickable/browsable unit
+   (product, branch, testimonial cards), not forms or admin panels. */
+.mk-card-hover {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.mk-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(38, 55, 42, 0.14);
+  border-color: var(--mk-gold);
+}
+
+.mk-nav-link {
+  position: relative;
+  padding-bottom: 3px;
+}
+.mk-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--mk-terracotta);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.mk-nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.mk-container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 6vw;
+}
+
+/* Responsive grids — inline styles can't hold media queries, so every
+   multi-column layout (product cards, branch cards, the "how it works"
+   steps) uses one of these instead of a raw gridTemplateColumns. */
+.mk-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+.mk-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.mk-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+@media (max-width: 860px) {
+  .mk-grid-3,
+  .mk-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .mk-grid-2,
+  .mk-grid-3,
+  .mk-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mk-nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  font-size: 14.5px;
+}
+@media (max-width: 720px) {
+  .mk-nav-links {
+    gap: 14px;
+    font-size: 13px;
+  }
+}
+
+@keyframes mk-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mk-message {
+  animation: mk-fade-in 0.2s ease-out;
+  border-radius: 5px;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.mk-message.error {
+  background: #fbecea;
+  color: var(--mk-danger);
+}
+.mk-message.success {
+  background: #eaf1e9;
+  color: var(--mk-forest-soft);
+}
+
+.mk-heart {
+  background: none;
+  border: none;
+  padding: 8px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.mk-heart:hover {
+  transform: scale(1.15);
+}
+
+@keyframes mk-heart-burst {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.45);
+  }
+  65% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Applied with a key tied to favorited-state, so React remounts the node
+   and replays this on every toggle, not just the first render. */
+.mk-heart-burst {
+  animation: mk-heart-burst 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes mk-bounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+.mk-scroll-cue {
+  animation: mk-bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes mk-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.mk-pop-in {
+  animation: mk-pop-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Reveal.tsx toggles the "visible" class via IntersectionObserver once a
+   section scrolls into view — see that file. */
+.mk-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.mk-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes mk-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mk-toast {
+  animation: mk-toast-in 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  background: var(--mk-forest);
+  color: var(--mk-ivory);
+  padding: 13px 18px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  max-width: 300px;
+}
+.mk-toast.error {
+  background: var(--mk-danger);
+}
+
+@keyframes mk-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.mk-skeleton {
+  background: linear-gradient(90deg, #ece4ce 25%, #f6f1e2 37%, #ece4ce 63%);
+  background-size: 400% 100%;
+  animation: mk-shimmer 1.4s ease infinite;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mk-skeleton {
+    animation: none;
+  }
+  .mk-reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .mk-pop-in,
+  .mk-toast,
+  .mk-message {
+    animation: none;
+  }
+  .mk-button:hover:not(:disabled),
+  .mk-card-hover:hover,
+  .mk-heart:hover {
+    transform: none;
+  }
+  .mk-heart-burst,
+  .mk-scroll-cue {
+    animation: none;
+  }
+}

@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+dist/
+*.log
+*.tsbuildinfo
+
+# local database
+prisma/dev.db
+prisma/dev.db-journal
+
+# env
+.env
+.env.local
+
+# OS
+.DS_Store
